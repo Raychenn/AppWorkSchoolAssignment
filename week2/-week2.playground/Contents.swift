@@ -99,14 +99,14 @@ zoo.weeklyHot = horse
  
  6. When a Struct method changes any of its properties, we are making a entirely new structure based on the original one. So, we have to mark the method as a mutating function, class does not.
  
- 7. In order to change properties of Struct, both the instance and the property must be a variable, not constant. For class, when we declared the object as a constant, we can still modify any property of its object as long as it is marked as variable since Swift will see it as still the same object but with a new value.
+ 7. In order to change properties of Struct, both the instance and the property must be a variable, not constant. For class, when we declared the object as a constant, we can still modify any property of its object as long as the property is marked as variable since Swift will see it as still the same object but with a new value.
 */
 
 
 /*
  5. What’s the difference between instance method and type method ?
  
- Answer: instance method can only be used/called by an actual instance/object created from a class or struct. Type method can can called by the type directly.
+ Answer: instance method can only be used/called by an actual instance/object created from a class or struct. Type method can be called by the type directly.
 */
 
 class Car {
@@ -200,13 +200,7 @@ class Pet {
 }
 
 class People {
-    
-    let pet: Pet?
-    
-    init(pet: Pet) {
-        self.pet = pet
-    }
-    
+    var pet: Pet?
 }
 
 func getPet(for people: People) -> Pet {
@@ -215,8 +209,8 @@ func getPet(for people: People) -> Pet {
     return pet
 }
 
-let people = People(pet: Pet(name: "lucky"))
-
+let people = People()
+people.pet = Pet(name: "Lucky")
 let pet = getPet(for: people)
 pet.name
 
@@ -227,7 +221,8 @@ func getPetUsingIflet(for people: People) -> Pet {
     
     return Pet(name: "")
 }
-let anotherPoeple = People(pet: Pet(name: "blacky"))
+let anotherPoeple = People()
+anotherPoeple.pet = Pet(name: "SK Doggo")
 let pet2 = getPetUsingIflet(for: anotherPoeple)
 pet2.name
 
@@ -259,13 +254,12 @@ protocol ToolMan {
     func fixComputer()
 }
 
-
 struct Person: PoliceMan {
     let name: String
     let toolMan: ToolMan
     
     func arrestCriminals() {
-        
+        print("I can arrest crinimals")
     }
 }
 
@@ -277,13 +271,20 @@ struct Engineer: ToolMan {
 }
 
 let slaveOfSteven = Engineer()
-let steven = Person(name: "Steven", toolMan: slaveOfSteven)
+let captainSteven = Person(name: "Steven", toolMan: slaveOfSteven)
 
-steven.toolMan.fixComputer()
-
+captainSteven.toolMan.fixComputer()
+captainSteven.arrestCriminals()
+captainSteven.name
 
 // Error Handling in Swift
 
+/*
+ Read the code above first and paste it in the playground file, there is an error inside the
+ code. Please solve the error by adding additional code in the file. Do not remove or
+ modify the code above. Call guess(number:) and pass 20 as the argument after you fix
+ the problem.
+*/
 enum GuessNumberGameError: Error {
     case wrongNumber
 }
