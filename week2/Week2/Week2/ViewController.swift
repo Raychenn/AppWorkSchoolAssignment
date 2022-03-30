@@ -90,7 +90,7 @@ class ViewController: UIViewController {
 //        let randomNumber = Int.random(in: 0...text.count-1)
 //        let randomText2 = self.text[randomNumber]
         
-        guard let randomText = self.text.randomElement() else { return }
+        let randomText = self.text.randomElement() 
         guard let randomColor = self.colorSets.randomElement() else { return }
         
         contentLabel.text = randomText
